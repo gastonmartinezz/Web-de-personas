@@ -1,6 +1,11 @@
 async function personas() {
     try {
-        const response = await fetch(`https://my-json-server.typicode.com/gastonmartinezz/servidorJSON`);
+        const response = await fetch(`https://my-json-server.typicode.com/m-dopazo/json/personas`);
+        /*  https://my-json-server.typicode.com/m-dopazo/json/personas
+                hace referencia a la LISTA con los datos
+            https://my-json-server.typicode.com/m-dopazo/json 
+                hace referencia al json (creo) y (Creo) se podria usar data.personas para acceder a la LISTA de personas
+            */
         const data = await response.json();
         
 
