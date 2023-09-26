@@ -7,7 +7,15 @@ async function personas() {
                 hace referencia al json (creo) y (Creo) se podria usar data.personas para acceder a la LISTA de personas
             */
         const data = await response.json();
-        
+
+        const listaPersonas = document.getElementById("lista-personas");
+        listaPersonas.innerHTML= "";
+
+        data.array.forEach(persona => {
+            const dude = document.createElement("div");
+            dude.classList.add("persona")
+            
+        });
 
     } catch (error){
         console.log(error);
