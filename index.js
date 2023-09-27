@@ -1,37 +1,54 @@
-async function personas() {
+async function cargarPersonas() {
     try {
         const response = await fetch(`https://my-json-server.typicode.com/m-dopazo/json/personas`);
-        /*  https://my-json-server.typicode.com/m-dopazo/json/personas
-                hace referencia a la LISTA con los datos
-            https://my-json-server.typicode.com/m-dopazo/json 
-                hace referencia al json (creo) y (Creo) se podria usar data.personas para acceder a la LISTA de personas
-            */
         const data = await response.json();
 
         const listaPersonas = document.getElementById("lista-personas");
         listaPersonas.innerHTML= "";
 
-        data.array.forEach(persona => {
+        data.forEach(persona => {
             const dude = document.createElement("div");
-            dude.classList.add("persona")
+
+            dude.classList.add("persona");
+            listaPersonas.appendChild(dude);
+
+            const dato = document.createElement("p");
+            dato.innerHTML = `Nombre: ${persona.name} <br> Mail: ${persona.email}`
+            dude.appendChild(dato);
             
         });
-
     } catch (error){
         console.log(error);
     }
-}
+};
 
+cargarPersonas();
+
+document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+
+    if (localStorage.getItem("modo") == undefined){
+        localStorage.setItem("modo", "dia");
+        body.classList.toggle('dia') ;
+    } else {
+        toggle();
+    }
+
+});
 
 const btn = document.getElementById('modo');
 
 function toggle() {
     const body = document.body;
-    body.classList.toggle('dia');
-    body.classList.toggle('noche'); 
+
+    if (body.classList == ""){
+        body.classList.add(localStorage.getItem("modo")); 
+    } else {
+        body.classList.toggle('dia');
+        body.classList.toggle('noche');
+    }    
 
     let modoLocal;
-    
     if (body.classList.contains('dia')) {
         modoLocal = "dia";
     } else {
