@@ -64,3 +64,28 @@ function toggle() {
 }
 
 btn.addEventListener('click', toggle);
+
+const botonBuscar = document.getElementById("botonBuscar");
+const inputBuscador = document.getElementById("buscador");
+
+
+botonBuscar.addEventListener("click", () => {
+    // Obtenemos el valor del campo de búsqueda
+    const busca = inputBuscador.value.toLowerCase();
+
+    // Obtenemos la lista de personas
+    const personas = document.querySelectorAll(".persona");
+
+    // Iteramos sobre cada persona según el término de búsqueda
+    personas.forEach(persona => {
+        const nombre = persona.querySelector("p").textContent.toLowerCase();
+        const email = persona.querySelector("p").textContent.toLowerCase();
+
+        if (nombre.includes(busca) || email.includes(busca)) {
+            persona.style.display = "block"; 
+        } else {
+            persona.style.display = "none"; 
+        }
+    });
+});
+cargarPersonas();
